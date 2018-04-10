@@ -7,4 +7,6 @@ URLS
 /account/login
 /account/register
 
-/user
+
+/user/track
+/user/track/new
