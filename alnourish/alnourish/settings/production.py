@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['.herokuapp.com', 'alnourish.com']
 
 
 INSTALLED_APPS = (
+'userprofile',
     'accounts',
     'vs',
     'django.contrib.admin',

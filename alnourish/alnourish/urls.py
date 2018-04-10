@@ -9,5 +9,6 @@ urlpatterns = [
 
     url(r'^home/', include('vs.urls',namespace='home')),
     url(r'^account/', include('accounts.urls',namespace='account')),
+    url(r'^user/', include('userprofile.urls',namespace='profile')),
     url(r'^admin/', include(admin.site.urls)),
 ]
