@@ -74,9 +74,58 @@ span.play-mix-btn:hover {
   width:100%;}
 
 
+.label-container{
+	position:fixed;
+	bottom:48px;
+	right:105px;
+	display:table;
+	visibility: hidden;
+}
 
+.label-text{
+	color:#FFF;
+	background:rgba(51,51,51,0.5);
+	display:table-cell;
+	vertical-align:middle;
+	padding:10px;
+	border-radius:3px;
+}
 
+.label-arrow{
+	display:table-cell;
+	vertical-align:middle;
+	color:#333;
+	opacity:0.5;
+}
 
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#06C;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	font-size:24px;
+	margin-top:18px;
+}
+
+a.float + div.label-container {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s ease;
+}
+
+a.float:hover + div.label-container{
+  visibility: visible;
+  opacity: 1;
+}
 </style>
 {% endblock %}
 
@@ -87,7 +136,7 @@ span.play-mix-btn:hover {
 {% block main %}
 
 
-<div class="main">
+< class="main">
     <!-- MAIN CONTENT -->
 
     <div class="container">
@@ -103,9 +152,12 @@ span.play-mix-btn:hover {
                 <div class="listing-tab col-md-12">
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#track{{forloop.counter}}" aria-controls="track{{forloop.counter}}" role="tab"
+                        <li role="presentation" class="active"><a href="#track{{forloop.counter}}"
+                                                                  aria-controls="track{{forloop.counter}}" role="tab"
                                                                   data-toggle="tab">General Information</a></li>
-                        <li role="presentation"><a href="#albums{{forloop.counter}}" aria-controls="albums{{forloop.counter}}" role="tab" data-toggle="tab">History</a>
+                        <li role="presentation"><a href="#albums{{forloop.counter}}"
+                                                   aria-controls="albums{{forloop.counter}}" role="tab"
+                                                   data-toggle="tab">History</a>
                         </li>
                     </ul>
 
@@ -144,11 +196,14 @@ span.play-mix-btn:hover {
             {% endif %}
 
         </div>
-
     </div>
+    <a href="#" class="float">
+<i class="fas fa-plus my-float"></i>
+</a>
+<div class="label-container">
+<div class="label-text">Start a new culture</div>
+<i class="fa fa-play label-arrow"></i>
 </div>
-
-<div id="btncollapzion" class=" btn_collapzion"></div>
 
 
 </div>
@@ -156,45 +211,5 @@ span.play-mix-btn:hover {
 
 {% block js %}
 
-var x = $('.FAB__mini-action-button').find('.mini-action-button--hide').length * 60 + 60;
 
-$('#btncollapzion').Collapzion({
-_child_attribute:[
-{
-'label':'<a href="https://www.jqueryscript.net/menu/">Menu</a> 1',
-'url':'#',
-'icon':'&#xE150;'
-},
-{
-'label':'Menu 2',
-'url':'#',
-'icon':'&#xE873;'
-},
-{
-'label':'Menu 3',
-'url':'#',
-'icon':'&#xE7FD;'
-},
-]
-});
-
-$('#btncollapzion').Collapzion({
-_main_btn_color:'#4285f4;',
-_child_btn_color:'#f4645f;',
-});
-
-$('#btncollapzion').Collapzion({
-_pos: {
-'width':'100%',
-'min-height':'20%',
-'position':'fixed',
-'right':'0',
-'left': '-20px',
-'bottom': '-25px',
-'text-align':'center',
-'padding': '0px 8px',
-'display':'block',
-'margin-bottom':'34px'
-},
-});
 {% endblock %}
