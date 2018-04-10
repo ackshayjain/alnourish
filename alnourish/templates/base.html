@@ -20,6 +20,8 @@
 	<!-- ICONS -->
 	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
 	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicon.png' %}">
+	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 	
     {% block cssfiles %}
     {% endblock %}
@@ -552,7 +554,52 @@
     {% block jsfiles %}
     {% endblock %}
 
-	<script>
+	<script>$('#myTabs a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+var x = $('.FAB__mini-action-button').find('.mini-action-button--hide').length * 60 + 60;
+
+$('#btncollapzion').Collapzion({
+  _child_attribute:[
+    {
+      'label':'<a href="https://www.jqueryscript.net/menu/">Menu</a> 1',
+      'url':'#',
+      'icon':'&#xE150;'
+    },
+    {
+    'label':'Menu 2',
+    'url':'#',
+    'icon':'&#xE873;'
+    },
+    {
+    'label':'Menu 3',
+    'url':'#',
+    'icon':'&#xE7FD;'
+    },
+  ]
+});
+
+$('#btncollapzion').Collapzion({
+  _main_btn_color:'#4285f4;',
+  _child_btn_color:'#f4645f;',
+});
+
+$('#btncollapzion').Collapzion({
+  _pos: {
+    'width':'100%',
+    'min-height':'20%',
+    'position':'fixed',
+    'right':'0',
+    'left': '-20px',
+    'bottom': '-25px',
+    'text-align':'center',
+    'padding': '0px 8px',
+    'display':'block',
+    'margin-bottom':'34px'
+  },
+});
 	$(function() {
 		var data, options;
 
