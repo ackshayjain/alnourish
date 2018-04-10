@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 SECRET_KEY = 'lht702d_-8wvb2f*ai6cy3i#j0ks1t9%#wzvb%koxuu#^b-m&u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'alnourish.com']
 
@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['.herokuapp.com', 'alnourish.com']
 
 
 INSTALLED_APPS = (
+    'accounts',
     'vs',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -112,7 +113,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')

@@ -18,8 +18,9 @@
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/apple-icon.png' %}">
-	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/favicon.png' %}">
+	<link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicon.png' %}">
+	
     {% block cssfiles %}
     {% endblock %}
 </head>
@@ -43,8 +44,10 @@
 					</div>
 				</form> -->
 				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>Login</span></a>
-					<a class="btn btn-success update-pro" href="" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>Register</span></a>
+					{% if not request.user.is_authenticated %}
+					<a class="btn btn-success update-pro" href="{% url 'account:login' %}" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>Login</span></a>
+					<a class="btn btn-success update-pro" href="{% url 'account:register' %}" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>Register</span></a>
+					{% endif %}
 				</div>
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
@@ -62,24 +65,28 @@
 								<!--<li><a href="#" class="more">See all notifications</a></li>-->
 							<!--</ul>-->
 						<!--</li>-->
-						<!--<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic Use</a></li>
-								<li><a href="#">Working With Data</a></li>
-								<li><a href="#">Security</a></li>
-								<li><a href="#">Troubleshooting</a></li>
-							</ul>
-						</li>-->
+						<!--{% if not request.user.is_authenticated %}-->
 						<!--<li class="dropdown">-->
-							<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'assets/img/user.png' %}" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>-->
+							<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="lnr lnr-question-circle"></i> <span>Help</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>-->
 							<!--<ul class="dropdown-menu">-->
+								<!--<li><a href="#">Basic Use</a></li>-->
+								<!--<li><a href="#">Working With Data</a></li>-->
+								<!--<li><a href="#">Security</a></li>-->
+								<!--<li><a href="#">Troubleshooting</a></li>-->
+							<!--</ul>-->
+						<!--</li>-->
+						<!--{% endif %}-->
+						{% if request.user.is_authenticated %}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="{% static 'assets/img/user.png' %}" class="img-circle" alt="Avatar"> <span>{{request.user.username}}</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+							<ul class="dropdown-menu">
 								<!--<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>-->
 								<!--<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>-->
 								<!--<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>-->
-								<!--<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>-->
-							<!--</ul>-->
-						<!--</li>-->
+								<li><a href="{% url 'account:logout' %}"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+							</ul>
+						</li>
+						{% endif %}
 						<!-- <li>
 							<a class="update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
 						</li> -->
@@ -95,10 +102,12 @@
 					<ul class="nav">
 						{% block home_active %}<li><a href="{% url 'home:index' %}"><i class="lnr lnr-home"></i> <span>Home</span></a></li>{% endblock %}
                         {% block about_active %}<li><a href="{% url 'home:about' %}" class=""><i class="lnr lnr-home"></i> <span>About Us</span></a></li>{% endblock %}
-                        {% block contact_active %}<li><a href="{% url 'home:contact' %}" class=""><i class="lnr lnr-home"></i><span>Contact Us</span></a></li>{% endblock %}
-                        {% block login_active %}<li><a href="{% url 'home:login' %}" class=""><i class="lnr lnr-home"></i> <span>Login</span></a></li>{% endblock %}
-                        {% block register_active %}<li><a href="{% url 'home:register' %}" class=""><i class="lnr lnr-home"></i> <span>Register</span></a></li>{% endblock %}
-                        {% block impact_active %}<li><a href="OurImpact.html" class=""><i class="lnr lnr-home"></i> <span>Our Impact</span></a></li>{% endblock %}
+						{% block contact_active %}<li><a href="{% url 'home:contact' %}" class=""><i class="lnr lnr-home"></i><span>Contact Us</span></a></li>{% endblock %}
+                        {% if not request.user.is_authenticated %}
+						{% block login_active %}<li><a href="{% url 'account:login' %}" class=""><i class="lnr lnr-home"></i> <span>Login</span></a></li>{% endblock %}
+                        {% block register_active %}<li><a href="{% url 'account:register' %}" class=""><i class="lnr lnr-home"></i> <span>Register</span></a></li>{% endblock %}
+                        {% endif %}
+						{% block impact_active %}<li><a href="OurImpact.html" class=""><i class="lnr lnr-home"></i> <span>Our Impact</span></a></li>{% endblock %}
                         {% block blog_active %}<li><a href="Blog.html" class=""><i class="lnr lnr-home"></i> <span>Blog</span></a></li>{% endblock %}
 					</ul>
 				</nav>
