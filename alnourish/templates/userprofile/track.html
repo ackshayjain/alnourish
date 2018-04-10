@@ -136,7 +136,7 @@ a.float:hover + div.label-container{
 {% block main %}
 
 
-< class="main">
+<div class="main">
     <!-- MAIN CONTENT -->
 
     <div class="container">
@@ -170,7 +170,7 @@ a.float:hover + div.label-container{
                                 <!--<li><a href="#">Upcoming test:</a>  <span>{next test date}</span></li><br>-->
                                 <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
                                 <hr>
-                                <a class="btn btn-danger update-pro"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
+                                <a class="btn btn-danger update-pro" href="{% url 'profile:delete' i.name %}"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
                             </ul>
 
@@ -182,7 +182,7 @@ a.float:hover + div.label-container{
                                 {% endfor %}
                                 <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
                                 <hr>
-                                <a class="btn btn-danger update-pro"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
+                                <a class="btn btn-danger update-pro" href="{% url 'profile:delete' i.name %}"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
                             </ul>
                         </div><!--ALBUMS-->
@@ -197,7 +197,7 @@ a.float:hover + div.label-container{
 
         </div>
     </div>
-    <a href="#" class="float">
+    <a href="{% url 'profile:new' %}" class="float">
 <i class="fas fa-plus my-float"></i>
 </a>
 <div class="label-container">

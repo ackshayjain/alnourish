@@ -50,3 +50,8 @@ def new_culture(request):
     context = {'form': form}
 
     return render(request, 'userprofile/new.html', context)
+
+def delete_culture(request,name):
+    username = request.user.username
+    Culture.objects.filter(username=username,name=name).delete()
+    return redirect('profile:index')
