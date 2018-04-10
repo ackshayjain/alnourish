@@ -118,6 +118,7 @@ a.float:hover + div.label-container{
   visibility: visible;
   opacity: 1;
 }
+
 </style>
 {% endblock %}
 
@@ -174,6 +175,8 @@ a.float:hover + div.label-container{
                                 {% endfor %}
                                 <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
                                 <hr>
+                                <a href="https://fontawesome.com/icons/plus?style=solid" class="btn btn-danger update-pro"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
+
                                 <a class="btn btn-danger update-pro" href="{% url 'profile:delete' i.name %}"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
                             </ul>
