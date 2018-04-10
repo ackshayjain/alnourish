@@ -7,6 +7,7 @@ from django.contrib.auth import(
 
 
 )
+
 User = get_user_model()
 
 class UserLogInForm(forms.Form):

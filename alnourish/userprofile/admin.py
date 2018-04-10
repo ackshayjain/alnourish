@@ -10,6 +10,8 @@ class CultureAdmin(admin.ModelAdmin):
 	'username',
 	'name',
 	'volume',
+    'test_date',
+    'ph_test',
 	]
 
 

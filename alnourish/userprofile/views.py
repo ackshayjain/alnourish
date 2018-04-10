@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 # import requests
-
+from django import forms
 # Create your views here
 from .models import Culture
 from .forms import AddForm
@@ -19,19 +19,29 @@ def index(request):
 
 def new_culture(request):
     if request.method == 'POST':
-        # create a form instance and popuslate it with data from the request:
+
         form = AddForm(request.POST)
-        # check whether it's valid:
+
         if form.is_valid():
             username = request.user.username
             name = request.POST.get('name', '')
             volume = request.POST.get('volume', '')
-            culture_obj = Culture(username=username,name=name,volume=volume)
-            culture_obj.save()
-            return redirect('profile:index')
-            # return render(request, 'ES/index2.html', context)
 
-        # if a GET (or any other method) we'll create a blank form
+            culture_qs = Culture.objects.filter(username=username, name=name)
+            if culture_qs.exists():
+                errors = "This culture already exists"
+                form=AddForm()
+                context = {'form': form, 'errors': errors}
+                return render(request, 'userprofile/new.html', context)
+            else:
+                culture_obj = Culture(username=username, name=name, volume=volume)
+
+                culture_obj.save()
+                return redirect('profile:index')
+
+
+
+
     else:
         form = AddForm()
 
