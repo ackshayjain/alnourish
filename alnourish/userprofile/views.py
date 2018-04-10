@@ -51,7 +51,12 @@ def new_culture(request):
 
     return render(request, 'userprofile/new.html', context)
 
+@login_required(login_url='/account/login/')
 def delete_culture(request,name):
     username = request.user.username
     Culture.objects.filter(username=username,name=name).delete()
     return redirect('profile:index')
+
+@login_required(login_url='/account/login/')
+def testc(request):
+    return render(request, 'userprofile/testculture.html')
