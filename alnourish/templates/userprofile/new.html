@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class = "main">
+    <br><br>
+    {% if errors %}
+        {{errors}}
+    {% endif %}
+<form action="" method="post" enctype="multipart/form-data">
+
+
+    {% csrf_token %}
+    {{form}}
+
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">SUBMIT</button>
+
+</form>
+</div>
+{% endblock %}
