@@ -160,7 +160,7 @@ a.float:hover + div.label-container{
                                 <li><a href="#">Started:</a> <span>{{i.start_date}}</span></li>
                                 <li><a href="#">Predicted End:</a> <span>{{i.end_date}}</span></li>
                                 <!--<li><a href="#">Upcoming test:</a>  <span>{next test date}</span></li><br>-->
-                                <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
+                                <a class="btn btn-success update-pro" href="{% url 'profile:testc' %}"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
                                 <hr>
                                 <a class="btn btn-danger update-pro" href="{% url 'profile:delete' i.name %}"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
@@ -172,7 +172,7 @@ a.float:hover + div.label-container{
                                 {% for j in i.ph_test %}
                                 <li><a href="#">{date}</a> <span>{PH level}</span></li>
                                 {% endfor %}
-                                <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
+                                <a class="btn btn-success update-pro" href="{% url 'profile:testc' %}"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
                                 <hr>
                                 <a class="btn btn-danger update-pro" href="{% url 'profile:delete' i.name %}"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
