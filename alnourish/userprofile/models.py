@@ -1,6 +1,7 @@
 
 from django.db import models
 # import os
+from datetime import datetime, timedelta
 
 
 class Culture(models.Model):
@@ -11,15 +12,11 @@ class Culture(models.Model):
 
     test_date = models.CharField(max_length = 200,default='')
     ph_test = models.CharField(max_length=200,default='')
-    # desc = models.TextField(max_length=400)
-    # location = models.CharField(max_length=100)
 
-    # lat = models.FloatField(default="0")
-    # lon = models.FloatField(default="0")
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField(default=datetime.now() + timedelta(days=15))
 
-    # pic = models.ImageField(upload_to='img')
 
-    date_published = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
 
     def __unicode__(self):

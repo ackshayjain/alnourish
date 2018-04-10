@@ -26,7 +26,6 @@ def new_culture(request):
             username = request.user.username
             name = request.POST.get('name', '')
             volume = request.POST.get('volume', '')
-
             culture_qs = Culture.objects.filter(username=username, name=name)
             if culture_qs.exists():
                 errors = "This culture already exists"
