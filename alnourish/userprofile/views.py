@@ -19,7 +19,7 @@ def index(request):
     context = {'cultures':cultures_qs}
     return render(request, 'userprofile/track.html',context)
 
-
+@login_required(login_url='/account/login/')
 def new_culture(request):
     if request.method == 'POST':
 
