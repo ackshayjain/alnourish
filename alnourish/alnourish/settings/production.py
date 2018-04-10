@@ -27,6 +27,18 @@ SECRET_KEY = 'lht702d_-8wvb2f*ai6cy3i#j0ks1t9%#wzvb%koxuu#^b-m&u'
 DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'alnourish.com']
+ADMINS = (('ackshay', 'user@domain.com'),)
+MANAGERS = ADMINSEMAIL_HOST = 'host'
+SEND_BROKEN_LINK_EMAILS=True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ackshayy'
+EMAIL_HOST_PASSWORD = 'ackshayy'
+EMAIL_USE_TLS = True
+SERVER_EMAIL = 'django@my-domain.com'
+EMAIL_HOST = 'smtp.gmail.com'
+SERVER_EMAIL = EMAIL_HOST_USER
 
 
 # Application definition
