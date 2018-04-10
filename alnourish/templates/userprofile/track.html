@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 
-
 {% block cssfiles %}
 <style>
 .container{background-color:#f1f1f1;}
@@ -76,6 +75,8 @@ span.play-mix-btn:hover {
 
 
 
+
+
 </style>
 {% endblock %}
 
@@ -87,56 +88,113 @@ span.play-mix-btn:hover {
 
 
 <div class="main">
-			<!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 watch-card">
-            <div class="artist-title col-md-12">
-                <a href="">{ culture name }</a><br/>
-                <span>Volume: { culture volume}</span>
-            </div>
+    <div class="container">
+        <div class="row">
+            {% if cultures %}
+            {% for i in cultures %}
+            <div class="col-md-4 watch-card">
+                <div class="artist-title col-md-12">
+                    <a href="">{{i.name}}</a><br/>
+                    <span>Volume: {{i.volume}}</span>
+                </div>
 
-            <div class="listing-tab col-md-12">
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs" id="myTabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#track" aria-controls="track" role="tab" data-toggle="tab">General Information</a></li>
-                    <li role="presentation"><a href="#albums" aria-controls="albums" role="tab" data-toggle="tab">History</a></li>
-                  </ul>
+                <div class="listing-tab col-md-12">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#track{{forloop.counter}}" aria-controls="track{{forloop.counter}}" role="tab"
+                                                                  data-toggle="tab">General Information</a></li>
+                        <li role="presentation"><a href="#albums{{forloop.counter}}" aria-controls="albums{{forloop.counter}}" role="tab" data-toggle="tab">History</a>
+                        </li>
+                    </ul>
 
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="track">
-                        <ul>
-                            <li><a href="#">Started:</a>    <span>{culture startdate}</span></li>
-                            <li><a href="#">Predicted End:</a> <span>{culture enddate}</span></li>
-                            <li><a href="#">Upcoming test:</a>  <span>{next test date}</span></li><br>
-                        <a class="btn btn-success update-pro" ><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
-                       <hr><a class="btn btn-danger update-pro" ><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="track{{forloop.counter}}">
+                            <ul>
+                                <li><a href="#">Started:</a> <span>{{i.start_date}}</span></li>
+                                <li><a href="#">Predicted End:</a> <span>{{i.end_date}}</span></li>
+                                <!--<li><a href="#">Upcoming test:</a>  <span>{next test date}</span></li><br>-->
+                                <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
+                                <hr>
+                                <a class="btn btn-danger update-pro"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
-                        </ul>
+                            </ul>
 
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="albums">
-                       <ul>
-                            <li><a href="#">{date}</a>    <span>{PH level}</span></li>
-                            <li><a href="#">{date}</a>    <span>{PH level}</span></li><br>
-                        <a class="btn btn-success update-pro" ><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
-                       <hr><a class="btn btn-danger update-pro" ><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
+                        </div><!--TRACK-->
+                        <div role="tabpanel" class="tab-pane" id="albums{{forloop.counter}}">
+                            <ul>
+                                {% for j in i.ph_test %}
+                                <li><a href="#">{date}</a> <span>{PH level}</span></li>
+                                {% endfor %}
+                                <a class="btn btn-success update-pro"><i class="fa fa-balance-scale"></i> <span>Test the culture</span></a>
+                                <hr>
+                                <a class="btn btn-danger update-pro"><i class="fa fa-user"></i> <span>Harvest the culture</span></a>
 
-                        </ul>
-                        </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+                            </ul>
+                        </div><!--ALBUMS-->
+                    </div><!--tab-content-->
+                </div><!--listing-tab-->
+            </div><!--watch card-->
+            {% endfor %}
+            {% else %}
+            NO CULTURES YET
 
-            </div>
+            {% endif %}
+
         </div>
+
     </div>
 </div>
+
 <div id="btncollapzion" class=" btn_collapzion"></div>
 
 
 </div>
+{% endblock %}
+
+{% block js %}
+
+var x = $('.FAB__mini-action-button').find('.mini-action-button--hide').length * 60 + 60;
+
+$('#btncollapzion').Collapzion({
+_child_attribute:[
+{
+'label':'<a href="https://www.jqueryscript.net/menu/">Menu</a> 1',
+'url':'#',
+'icon':'&#xE150;'
+},
+{
+'label':'Menu 2',
+'url':'#',
+'icon':'&#xE873;'
+},
+{
+'label':'Menu 3',
+'url':'#',
+'icon':'&#xE7FD;'
+},
+]
+});
+
+$('#btncollapzion').Collapzion({
+_main_btn_color:'#4285f4;',
+_child_btn_color:'#f4645f;',
+});
+
+$('#btncollapzion').Collapzion({
+_pos: {
+'width':'100%',
+'min-height':'20%',
+'position':'fixed',
+'right':'0',
+'left': '-20px',
+'bottom': '-25px',
+'text-align':'center',
+'padding': '0px 8px',
+'display':'block',
+'margin-bottom':'34px'
+},
+});
 {% endblock %}

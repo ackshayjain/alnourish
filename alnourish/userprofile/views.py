@@ -14,7 +14,10 @@ from django.shortcuts import render,redirect
 
 @login_required(login_url='/account/login/')
 def index(request):
-    return render(request, 'userprofile/track.html')
+    username = request.user.username
+    cultures_qs = Culture.objects.filter(username=username)
+    context = {'cultures':cultures_qs}
+    return render(request, 'userprofile/track.html',context)
 
 
 def new_culture(request):
