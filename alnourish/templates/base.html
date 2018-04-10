@@ -103,10 +103,10 @@
 						{% block home_active %}<li><a href="{% url 'home:index' %}"><i class="lnr lnr-home"></i> <span>Home</span></a></li>{% endblock %}
                         {% block about_active %}<li><a href="{% url 'home:about' %}" class=""><i class="lnr lnr-home"></i> <span>About Us</span></a></li>{% endblock %}
 						{% block contact_active %}<li><a href="{% url 'home:contact' %}" class=""><i class="lnr lnr-home"></i><span>Contact Us</span></a></li>{% endblock %}
-                        {% if not request.user.is_authenticated %}
-						{% block login_active %}<li><a href="{% url 'account:login' %}" class=""><i class="lnr lnr-home"></i> <span>Login</span></a></li>{% endblock %}
-                        {% block register_active %}<li><a href="{% url 'account:register' %}" class=""><i class="lnr lnr-home"></i> <span>Register</span></a></li>{% endblock %}
-                        {% endif %}
+                        <!--{% if not request.user.is_authenticated %}-->
+						<!--{% block login_active %}<li><a href="{% url 'account:login' %}" class=""><i class="lnr lnr-home"></i> <span>Login</span></a></li>{% endblock %}-->
+                        <!--{% block register_active %}<li><a href="{% url 'account:register' %}" class=""><i class="lnr lnr-home"></i> <span>Register</span></a></li>{% endblock %}-->
+                        <!--{% endif %}-->
 						{% block impact_active %}<li><a href="OurImpact.html" class=""><i class="lnr lnr-home"></i> <span>Our Impact</span></a></li>{% endblock %}
                         {% block blog_active %}<li><a href="Blog.html" class=""><i class="lnr lnr-home"></i> <span>Blog</span></a></li>{% endblock %}
 					</ul>
